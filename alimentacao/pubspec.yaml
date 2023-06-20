@@ -60,9 +60,15 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/img/icon/facebook.png
+    - assets/img/icon/instagram.png
+    - assets/img/logo/logo_1.png
+    - assets/img/logo/logo_2.png
+    - assets/img/logo/logo_3.png
+    - assets/img/logo/logo_4.png
+    - assets/img/donation0.png
+    - assets/img/donation1.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
@@ -86,6 +92,27 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  fonts:
+  - family: Raleway
+    fonts:
+      - asset: 'assets/fonts/Raleway/Raleway-Black.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-BlackItalic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-Bold.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-BoldItalic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-ExtraBold.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-ExtraBoldItalic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-ExtraLight.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-ExtraLightItalic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-Italic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-Light.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-LightItalic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-Medium.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-MediumItalic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-Regular.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-SemiBold.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-SemiBoldItalic.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-Thin.ttf'
+      - asset: 'assets/fonts/Raleway/Raleway-ThinItalic.ttf'
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
