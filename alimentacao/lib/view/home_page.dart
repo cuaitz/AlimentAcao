@@ -57,8 +57,20 @@ class HomePageScreen extends StatelessWidget {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Components.uiButton("Quero fazer doações", () { }),
-                          Components.uiButton("Quero receber doações", () { }),
+                          Components.uiButton(
+                            "Quero fazer doações",
+                            Components.colorGreen,
+                            () {
+                              Navigator.pushNamed(context, '/login/donator');
+                            }
+                          ),
+                          Components.uiButton(
+                            "Quero receber doações",
+                            Components.colorGreen,
+                            () {
+                              Navigator.pushNamed(context, '/login/receiver');
+                            }
+                          ),
                         ],
                       ),
                     )

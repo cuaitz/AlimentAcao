@@ -35,9 +35,9 @@ class Components {
     );
   }
   
-  static AppBar appBar(String title) {
+  static AppBar appBar(String title, {Color backgroundColor = Components.colorGreen}) {
     return AppBar(
-      backgroundColor: Components.colorGreen,
+      backgroundColor: backgroundColor,
       elevation: 0,
       bottomOpacity: 0,
       title: Text(title),
@@ -68,16 +68,16 @@ class Components {
                       image: AssetImage(
                         'assets/img/icon/facebook.png'
                       ),
-                      width: 60,
-                      height: 60,
+                      width: 50,
+                      height: 50,
                     ),
                     SizedBox(width: 10),
                     Image(
                       image: AssetImage(
                         'assets/img/icon/instagram.png'
                       ),
-                      width: 60,
-                      height: 60,
+                      width: 50,
+                      height: 50,
                     )
                   ],
                 ),
@@ -96,12 +96,12 @@ class Components {
     );
   }
 
-  static ElevatedButton uiButton(String text, void Function() onClick) {
+  static ElevatedButton uiButton(String text, Color backgroundColor, void Function() onClick) {
     return ElevatedButton(
       onPressed: onClick,
       style: ElevatedButton.styleFrom(
         minimumSize: const Size.fromHeight(60),
-        backgroundColor: colorGreen,
+        backgroundColor: backgroundColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50)
         )
@@ -112,6 +112,30 @@ class Components {
           fontSize: 20,
           fontWeight: FontWeight.w700,
         ),
+      )
+    );
+  }
+
+  static TextField uiTextField(String labelText, Color themeColor, {Color? backgroundColor, String? hintText, bool obscureText = false}) {
+    return TextField(
+      obscureText: obscureText,
+      decoration: InputDecoration(
+        hintText: hintText,
+        filled: true,
+        fillColor: backgroundColor,
+        labelText: labelText,
+        labelStyle: TextStyle(
+          color: themeColor,
+          fontWeight: FontWeight.w700,
+          fontSize: 20
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(50),
+          borderSide: BorderSide(
+            color: themeColor,
+            width: 2
+          )
+        )
       )
     );
   }
