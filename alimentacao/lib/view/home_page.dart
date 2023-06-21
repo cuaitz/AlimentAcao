@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:alimentacao/components.dart';
+import 'package:alimentacao/routes.dart';
 
 
 class HomePageScreen extends StatelessWidget {
@@ -61,14 +62,14 @@ class HomePageScreen extends StatelessWidget {
                             "Quero fazer doações",
                             Components.colorGreen,
                             () {
-                              Navigator.pushNamed(context, '/login/donator');
+                              Navigator.pushNamed(context, Routes.loginDonatorPage);
                             }
                           ),
                           Components.uiButton(
                             "Quero receber doações",
                             Components.colorGreen,
                             () {
-                              Navigator.pushNamed(context, '/login/receiver');
+                              Navigator.pushNamed(context, Routes.receiverDonatorPage);
                             }
                           ),
                         ],
