@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../components.dart';
+import '../routes.dart';
 
 
-class DonatorLoginScreen extends StatelessWidget {
-  const DonatorLoginScreen({super.key});
+class DonatorRegisterScreen extends StatelessWidget {
+  const DonatorRegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

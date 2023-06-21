@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 
 
 class Routes {
-  static const String loginDonatorPage = '/auth/register/donator';
-  static const String receiverDonatorPage = '/auth/register/receiver';
+  static const String donatorRegisterPage = '/auth/register/donator';
+  static const String receiverRegisterPage = '/auth/register/receiver';
 
   static Map<String, Widget Function(BuildContext)> routes = {
-    loginDonatorPage: (context) => const DonatorLoginScreen(),
-    receiverDonatorPage: (context) => const ReceiverLoginScreen()
+    donatorRegisterPage: (context) => const DonatorRegisterScreen(),
+    receiverRegisterPage: (context) => const ReceiverRegisterScreen()
   };
 }

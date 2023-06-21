@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../components.dart';
+import '../routes.dart';
 
 
-class ReceiverLoginScreen extends StatelessWidget {
-  const ReceiverLoginScreen({super.key});
+class ReceiverRegisterScreen extends StatelessWidget {
+  const ReceiverRegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

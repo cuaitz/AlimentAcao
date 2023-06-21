@@ -62,14 +62,14 @@ class HomePageScreen extends StatelessWidget {
                             "Quero fazer doações",
                             Components.colorGreen,
                             () {
-                              Navigator.pushNamed(context, Routes.loginDonatorPage);
+                              Navigator.pushNamed(context, Routes.donatorRegisterPage);
                             }
                           ),
                           Components.uiButton(
                             "Quero receber doações",
                             Components.colorGreen,
                             () {
-                              Navigator.pushNamed(context, Routes.receiverDonatorPage);
+                              Navigator.pushNamed(context, Routes.receiverRegisterPage);
                             }
                           ),
                         ],
