@@ -64,12 +64,24 @@ flutter:
     - assets/img/icon/facebook.png
     - assets/img/icon/instagram.png
     - assets/img/icon/google.png
+
     - assets/img/logo/logo_1.png
     - assets/img/logo/logo_2.png
     - assets/img/logo/logo_3.png
     - assets/img/logo/logo_4.png
+    
     - assets/img/donation0.png
     - assets/img/donation1.png
+
+    - assets/img/donatables/flour.png
+    - assets/img/donatables/garlic.png
+    - assets/img/donatables/oil.png
+    - assets/img/donatables/olive-oil.png
+    - assets/img/donatables/onion.png
+    - assets/img/donatables/red-chili-pepper.png
+    - assets/img/donatables/salt.png
+    - assets/img/donatables/sugar.png
+    - assets/img/donatables/tomato.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
