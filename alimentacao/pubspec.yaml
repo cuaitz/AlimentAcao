@@ -63,6 +63,7 @@ flutter:
   assets:
     - assets/img/icon/facebook.png
     - assets/img/icon/instagram.png
+    - assets/img/icon/google.png
     - assets/img/logo/logo_1.png
     - assets/img/logo/logo_2.png
     - assets/img/logo/logo_3.png

@@ -9,7 +9,7 @@ class ReceiverRegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Components.appBar("Registro", backgroundColor: Components.colorPurple),
+      appBar: Components.appBar("Registro", backgroundColor: Components.colorGreen),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(
@@ -22,7 +22,7 @@ class ReceiverRegisterScreen extends StatelessWidget {
                   child: Container(
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: Components.colorPurple,
+                        color: Components.colorGreen,
                         width: 2
                       ),
                       borderRadius: BorderRadius.circular(100)
@@ -30,7 +30,7 @@ class ReceiverRegisterScreen extends StatelessWidget {
                     child: const Icon(
                       Icons.person,
                       size: 100,
-                      color: Components.colorPurple,
+                      color: Components.colorGreen,
                     ),
                   ),
                 ),
@@ -39,14 +39,26 @@ class ReceiverRegisterScreen extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Components.uiTextField("Razão social", Components.colorPurple),
-                      Components.uiTextField("Nome fantasia", Components.colorPurple),
-                      Components.uiTextField("Endereço", Components.colorPurple),
-                      Components.uiTextField("CNPJ", Components.colorPurple),
-                      Components.uiTextField("Email", Components.colorPurple),
-                      Components.uiTextField("Senha", Components.colorPurple, obscureText: true),
-                      Components.uiTextField("Confirme sua senha", Components.colorPurple, obscureText: true),
-                      Components.uiButton("Cadastrar", Components.colorPurple, () { })
+                      Components.uiTextField("Nome", Components.colorGreen),
+                      Components.uiTextField("Sobrenome", Components.colorGreen),
+                      Components.uiTextField("Data de nascimento", Components.colorGreen),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SizedBox(
+                            width: 178,
+                            child: Components.uiTextField("CPF", Components.colorGreen),
+                          ),
+                          SizedBox(
+                            width: 178,
+                            child: Components.uiTextField("RG", Components.colorGreen),
+                          ),
+                        ],
+                      ),
+                      Components.uiTextField("Email", Components.colorGreen),
+                      Components.uiTextField("Senha", Components.colorGreen, obscureText: true),
+                      Components.uiTextField("Confirme sua senha", Components.colorGreen, obscureText: true),
+                      Components.uiButton("Cadastrar", Components.colorGreen, () { Navigator.pushNamed(context, Routes.loginPage); })
                     ],
                   ),
                 )
