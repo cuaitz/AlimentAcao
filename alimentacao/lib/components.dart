@@ -6,12 +6,13 @@ class Components {
   static const Color colorBeige = Color(0xffEEF4F9);
   static const Color colorGreen = Color(0xff87BF0A);
   static const Color colorPurple = Color(0xff981D97);
+  static const Color colorLightPurple = Color(0xffE174E0);
 
 
-  static Padding h1(String text, {TextAlign? textAlign}) {
+  static Padding h1(String text, {Color? color=Components.colorPurple, TextAlign? textAlign}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
-      child: quickText(text, fontSize: 32, fontWeight: FontWeight.w700, color: colorPurple, textAlign: textAlign)
+      child: quickText(text, fontSize: 32, fontWeight: FontWeight.w700, color: color, textAlign: textAlign)
     );
   }
 
@@ -96,7 +97,7 @@ class Components {
     );
   }
 
-  static ElevatedButton uiButton(String text, Color backgroundColor, void Function() onClick) {
+  static ElevatedButton uiButton(String text, Color backgroundColor, void Function() onClick, {Color? textColor}) {
     return ElevatedButton(
       onPressed: onClick,
       style: ElevatedButton.styleFrom(
@@ -108,9 +109,10 @@ class Components {
       ),
       child: Text(
         text,
-        style: const TextStyle(
+        style: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w700,
+          color: textColor
         ),
       )
     );
