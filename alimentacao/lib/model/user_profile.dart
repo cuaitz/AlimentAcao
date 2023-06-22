@@ -1,4 +1,4 @@
-class UserProfile {
+abstract class UserProfile {
   final String email;
   final String password;
 

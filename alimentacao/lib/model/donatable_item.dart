@@ -24,5 +24,6 @@ class DonatableItem {
 
   DonatableItem(this.name, this.image, this.validUnits) {
     id = _getID(this);
+    assert(validUnits.isNotEmpty, "É necessário informar pelo menos uma unidade de medida do item a ser doado.");
   }
 }
