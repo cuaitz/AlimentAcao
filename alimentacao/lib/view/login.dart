@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components.dart';
+import '../routes.dart';
 
 
 class LoginScreen extends StatelessWidget {
@@ -30,7 +31,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Components.uiTextField("Email", Components.colorGreen),
                       Components.uiTextField("Senha", Components.colorGreen, obscureText: true),
-                      Components.uiButton("Entrar", Components.colorGreen, () { }),
+                      Components.uiButton("Entrar", Components.colorGreen, () { Navigator.pushNamed(context, Routes.donationPage); }),
                     ],
                   )
                 ),
