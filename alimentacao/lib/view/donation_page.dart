@@ -1,6 +1,7 @@
 import 'package:alimentacao/model/donatable_item.dart';
 import 'package:flutter/material.dart';
 import '../components.dart';
+import '../routes.dart';
 
 
 class DonationScreen extends StatelessWidget {
@@ -18,7 +19,7 @@ class DonationScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Center(
-            child: Components.uiButton("Próximo", Colors.white, () { }, textColor: Components.colorPurple)
+            child: Components.uiButton("Próximo", Colors.white, () { Navigator.pushNamed(context, Routes.donationMap); }, textColor: Components.colorPurple)
           ),
         ),
       ),
