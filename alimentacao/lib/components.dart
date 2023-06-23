@@ -118,8 +118,9 @@ class Components {
     );
   }
 
-  static TextField uiTextField(String labelText, Color themeColor, {Color? backgroundColor, String? hintText, bool obscureText = false}) {
+  static TextField uiTextField(String labelText, Color themeColor, {TextEditingController? controller, Color? backgroundColor, String? hintText, bool obscureText = false}) {
     return TextField(
+      controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,

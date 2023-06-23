@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import '../components.dart';
+import '../routes.dart';
+
 
 class PickUpLocationScreen extends StatefulWidget {
   const PickUpLocationScreen({super.key});
@@ -24,7 +26,7 @@ class _PickUpLocationScreenState extends State<PickUpLocationScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Center(
-            child: Components.uiButton("Próximo", Colors.white, () { }, textColor: Components.colorPurple)
+            child: Components.uiButton("Confirmar", Colors.white, () { Navigator.pop(context); }, textColor: Components.colorPurple)
           ),
         ),
       ),
