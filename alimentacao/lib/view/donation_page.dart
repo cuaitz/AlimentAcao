@@ -1,5 +1,6 @@
 import 'package:alimentacao/model/donatable_item.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../components.dart';
 import '../routes.dart';
 
@@ -19,7 +20,7 @@ class DonationScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Center(
-            child: Components.uiButton("Próximo", Colors.white, () { Navigator.pushNamed(context, Routes.donationMap); }, textColor: Components.colorPurple)
+            child: Components.uiButton("Próximo", Colors.white, () { Navigator.pushNamed(context, Routes.donationReviewPage); }, textColor: Components.colorPurple)
           ),
         ),
       ),
@@ -48,7 +49,7 @@ class DonationScreen extends StatelessWidget {
                         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
                         itemCount: _donatableItems.length,
                         itemBuilder: (context, index) {
-                          return itemDisplay(_donatableItems[index], context);
+                          return DisplayedItem(item: _donatableItems[index]);
                         },
                       ),
                     ),
@@ -61,14 +62,50 @@ class DonationScreen extends StatelessWidget {
       )
     );
   }
+}
 
-  GestureDetector itemDisplay(DonatableItem item, BuildContext context) {
+
+class DisplayedItem extends StatefulWidget {
+  const DisplayedItem({super.key, required this.item});
+
+  final DonatableItem item;
+
+  @override
+  State<DisplayedItem> createState() => _DisplayedItemState();
+}
+
+class _DisplayedItemState extends State<DisplayedItem> {
+  String _unit = '';
+  int _amount = 0;
+  late DonatableItem _item;
+
+  @override
+  void initState() {
+    super.initState();
+    _unit = widget.item.validUnits.first;
+    _item = widget.item;
+  }
+  
+  void updateData(String unit, int amount) {
+    setState(() {
+      _unit = unit;
+      _amount = amount;
+    });
+  }
+  
+
+  @override
+  Widget build(BuildContext context) {
+    
     return GestureDetector(
       onTap: () {
         showModalBottomSheet(
           context: context, 
           builder: (context) {
-            return DonatableItemPopUp(item: item);
+            return DonatableItemPopUp(
+              item: _item,
+              updateData: updateData
+            );
           }
         );
       },
@@ -77,28 +114,54 @@ class DonationScreen extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: _amount == 0 ? Colors.transparent : Components.colorGreen,
+                width: 4
+              ),
               color: Colors.white
             ),
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(10),
               child: Image(
-                image: item.image,
-                width: 80,
-                height: 80,
+                image: _item.image,
+                width: 65,
+                height: 65,
               ),
             ),
           ),
-          Components.quickText(item.name, fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white, textAlign: TextAlign.center)
+          Components.quickText(_item.name, fontSize: 20, fontWeight: FontWeight.w700, color: Colors.white, textAlign: TextAlign.center)
         ],
       )
     );
   }
 }
 
-class DonatableItemPopUp extends StatelessWidget {
-  const DonatableItemPopUp({super.key, required this.item});
+
+class DonatableItemPopUp extends StatefulWidget {
+  const DonatableItemPopUp({super.key, required this.item, required this.updateData});
 
   final DonatableItem item;
+  final void Function(String, int) updateData;
+  
+  @override
+  State<DonatableItemPopUp> createState() => _DonatableItemPopUpState();
+}
+
+class _DonatableItemPopUpState extends State<DonatableItemPopUp> {
+  
+  late final UnitsDropdown _dropdown;
+  final GlobalKey<_UnitsDropdownState> dropdownKey = GlobalKey<_UnitsDropdownState>();
+
+  final _textFieldController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    _dropdown = UnitsDropdown(
+      key: dropdownKey,
+      values: widget.item.validUnits
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -110,26 +173,36 @@ class DonatableItemPopUp extends StatelessWidget {
           child: Column(
             children: [
               Image(
-                image: item.image,
+                image: widget.item.image,
                 width: 150,
                 height: 150,
               ),
-              Components.quickText(item.name, fontSize: 30, fontWeight: FontWeight.w700, color: Components.colorPurple),
+              Components.quickText(widget.item.name, fontSize: 30, fontWeight: FontWeight.w700, color: Components.colorPurple),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Components.quickText("Medida:", fontSize: 24, fontWeight: FontWeight.w700, color: Components.colorPurple),
-                    UnitsDropdown(values: item.validUnits),
+                    _dropdown,
                   ],
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Components.uiTextField("Quantidade", Components.colorPurple),
+                child: Components.uiTextField("Quantidade", Components.colorPurple, controller: _textFieldController),
               ),
-              Components.uiButton("Confirmar", Components.colorPurple, (){ Navigator.pop(context); })
+              Components.uiButton(
+                "Confirmar", 
+                Components.colorPurple, () {
+                  print(_textFieldController.text);
+                  widget.updateData(
+                    dropdownKey.currentState!.selectedValue,
+                    int.parse(_textFieldController.text)
+                  );
+                  Navigator.pop(context); 
+                }
+              )
             ],
           ),
         )
@@ -154,8 +227,10 @@ class _UnitsDropdownState extends State<UnitsDropdown> {
   void initState() {
     super.initState();
     selectedValue = widget.values.first;
-
   }
+
+  void test() {}
+  
   @override
   Widget build(BuildContext context) {
     return DropdownButton(
