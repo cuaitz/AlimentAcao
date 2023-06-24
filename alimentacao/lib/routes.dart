@@ -12,7 +12,7 @@ class Routes {
   static const String loginPage = '/auth/login';
 
   static const String donationPage = '/donate';
-  static const String donationMap = '/donate/map';
+  static const String donationMapPage = '/donate/map';
 
   static Map<String, Widget Function(BuildContext)> routes = {
     donatorRegisterPage: (context) => const DonatorRegisterScreen(),
@@ -20,6 +20,6 @@ class Routes {
     loginPage: (context) => const LoginScreen(),
 
     donationPage: (context) => DonationScreen(),
-    donationMap: (context) => const PickUpLocationScreen()
+    donationMapPage: (context) => const PickUpLocationScreen()
   };
 }

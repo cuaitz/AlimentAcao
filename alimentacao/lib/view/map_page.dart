@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import '../components.dart';
-import '../routes.dart';
 
 
 class PickUpLocationScreen extends StatefulWidget {
