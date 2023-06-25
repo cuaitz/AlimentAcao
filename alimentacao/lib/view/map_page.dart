@@ -1,3 +1,4 @@
+import 'package:alimentacao/model/pickup_point.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
 import '../components.dart';
@@ -12,7 +13,11 @@ class PickUpLocationScreen extends StatefulWidget {
 
 class _PickUpLocationScreenState extends State<PickUpLocationScreen> {
   final MapController _mapController = MapController(
-    initMapWithUserPosition: true
+    initMapWithUserPosition: false,
+    initPosition: GeoPoint(
+      latitude: -23.59167,
+      longitude: -48.05306
+    )
   );
 
   @override
@@ -25,7 +30,7 @@ class _PickUpLocationScreenState extends State<PickUpLocationScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Center(
-            child: Components.uiButton("Confirmar", Colors.white, () { Navigator.pop(context); }, textColor: Components.colorPurple)
+            child: Components.quickText("Selecione um ponto de coleta", fontSize: 22, fontWeight: FontWeight.w700, color: Colors.white, textAlign: TextAlign.center)
           ),
         ),
       ),
@@ -54,31 +59,72 @@ class _PickUpLocationScreenState extends State<PickUpLocationScreen> {
                   minZoomLevel: 2,
                   maxZoomLevel: 19,
                   stepZoom: 2,
+                  roadConfiguration: RoadOption(
+                    roadColor: Components.colorLightPurple,
+                    roadBorderColor: Components.colorPurple,
+                    roadBorderWidth: 4,
+                    roadWidth: 12,
+                    zoomInto: true
+                  ),
                   //androidHotReloadSupport: true,
-                  roadConfiguration: const RoadOption(
-                    roadColor: Color(0xff000000)
-                  ),
-                  markerOption: MarkerOption(
-                    defaultMarker: const MarkerIcon(
-                      icon: Icon(Icons.person_pin_circle_outlined)
-                    )
-                  ),
-                  userLocationMarker: UserLocationMaker(
-                    personMarker: const MarkerIcon(
-                      icon: Icon(
-                        Icons.personal_injury_outlined,
-                        color: Color(0xff000000),
-                        size: 48,
+                  onGeoPointClicked: (point) {
+                    PickUpPoint? pickUpPoint = PickUpPoint.getByLatLng(point.latitude, point.longitude);
+                    showModalBottomSheet(
+                      context: context, 
+                      builder: (context) {
+                        return SizedBox(
+                          height: 500,
+                          child: Center(
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                                    children: [
+                                      const Icon(
+                                        Icons.pin_drop_rounded,
+                                        size: 150,
+                                        color: Components.colorPurple,
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(vertical: 10),
+                                        child: Components.quickText("${pickUpPoint!.roadName}, ${pickUpPoint.number}", fontSize: 24, fontWeight: FontWeight.w700, color: Components.colorPurple, textAlign: TextAlign.center),
+                                      ),
+                                      Components.quickText(pickUpPoint.neighborhood, fontSize: 24, fontWeight: FontWeight.w700, color: Components.colorPurple, textAlign: TextAlign.center),
+                                      Components.quickText(pickUpPoint.city, fontSize: 24, fontWeight: FontWeight.w700, color: Components.colorPurple, textAlign: TextAlign.center),
+                                    ],
+                                  ),
+                                  Components.uiButton(
+                                    "Selecionar", 
+                                    Components.colorPurple, 
+                                    () {
+                                      //widget.retrieveData(dropdownValue!, int.parse(_textFieldController.text));
+                                      Navigator.pop(context);
+                                    }
+                                  )
+                                ],
+                              ),
+                            )
+                          ),
+                        );
+                      },
+                    );
+                  },
+                  staticPoints: [
+                    StaticPositionGeoPoint(
+                      '0', 
+                      const MarkerIcon(
+                        icon: Icon(
+                          Icons.pin_drop_rounded,
+                          size: 100,
+                          color: Components.colorPurple,
+                        )
                       ),
-                    ),
-                    directionArrowMarker: const MarkerIcon(
-                      icon: Icon(
-                        Icons.location_on_outlined,
-                        color: Color(0xff000000),
-                        size: 48,
-                      )
-                    ),
-                  ),
+                      PickUpPoint.getAll()
+                    )
+                  ],
                   onMapIsReady: (isReady) async {
                     if (isReady) {
                       await Future.delayed(const Duration(seconds: 1), () async { 
