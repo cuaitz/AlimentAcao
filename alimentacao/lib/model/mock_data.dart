@@ -1,4 +1,6 @@
+import 'package:alimentacao/model/donator.dart';
 import 'package:alimentacao/model/pickup_point.dart';
+import 'package:alimentacao/model/receiver.dart';
 import 'package:flutter/cupertino.dart';
 import 'donatable_item.dart';
 
@@ -47,6 +49,25 @@ void initData() {
       "Itapetininga - SP",
       -23.590800281623032,
       -48.06527700324815
+    );
+
+    DonatorUser(
+      '',
+      '',
+      '',
+      '',
+      'donator@gmail.com',
+      '123'
+    );
+
+    ReceiverUser(
+      '',
+      '',
+      '',
+      '',
+      '',
+      'receiver@gmail.com',
+      '123'
     );
     
   _loaded = true;
