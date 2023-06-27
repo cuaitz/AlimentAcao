@@ -47,37 +47,39 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(bottom: 15),
-              child: Components.quickText(
-                "Doações",
-                color: Components.colorPurple,
-                fontSize: 32,
-                fontWeight: FontWeight.w700,
-                textAlign: TextAlign.center
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xffdddddd),
-                  borderRadius: BorderRadius.circular(10)
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 15),
+                child: Components.quickText(
+                  "Doações",
+                  color: Components.colorPurple,
+                  fontSize: 32,
+                  fontWeight: FontWeight.w700,
+                  textAlign: TextAlign.center
                 ),
-                height: 450,
-                child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: buildList(donations),
-                )
               ),
-            )
-          ],
+              Padding(
+                padding: const EdgeInsets.all(5),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: const Color(0xffdddddd),
+                    borderRadius: BorderRadius.circular(10)
+                  ),
+                  height: 450,
+                  child: Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: buildList(donations),
+                  )
+                ),
+              )
+            ],
+          ),
         ),
       )
     );
