@@ -1,3 +1,4 @@
+import 'package:alimentacao/model/donation.dart';
 import 'package:alimentacao/model/donator.dart';
 import 'package:alimentacao/model/pickup_point.dart';
 import 'package:alimentacao/model/receiver.dart';
@@ -69,6 +70,25 @@ void initData() {
       'receiver@gmail.com',
       '123'
     );
+
+    Donation({}, 0, 0, DonationStatus.delivered);
+    Donation({}, 0, 1, DonationStatus.pending);
+    Donation({}, 0, 3, DonationStatus.reserved);
+    Donation({}, 0, 2, DonationStatus.reserved);
+    Donation({}, 0, 2, DonationStatus.reserved);
+    Donation({}, 0, 1, DonationStatus.pending);
+    Donation({}, 0, 1, DonationStatus.delivered);
+    Donation({}, 0, 0, DonationStatus.received);
+    Donation({}, 0, 2, DonationStatus.reserved);
+    Donation({}, 0, 0, DonationStatus.pending);
+    Donation({}, 0, 3, DonationStatus.received);
+    Donation({}, 0, 0, DonationStatus.reserved);
+    Donation({}, 0, 0, DonationStatus.delivered);
+    Donation({}, 0, 1, DonationStatus.reserved);
+    Donation({}, 0, 0, DonationStatus.pending);
+    Donation({}, 0, 3, DonationStatus.pending);
+    Donation({}, 0, 3, DonationStatus.received);
+    Donation({}, 0, 2, DonationStatus.reserved);
     
   _loaded = true;
 }

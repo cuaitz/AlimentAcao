@@ -19,18 +19,19 @@ class Donation {
   }
 
   late final int id;
-  late DonationStatus status;
+  DonationStatus status;
   final Map<int, dynamic> donationItems;
   final int donatorID;
   final int pickUpPointID;
   
-  Donation(this.donationItems, this.donatorID, this.pickUpPointID) {
+  Donation(this.donationItems, this.donatorID, this.pickUpPointID, this.status) {
     id = _getID(this);
-    status = DonationStatus.pending;
   }
 }
 
 enum DonationStatus {
   pending,
-  delivered
+  delivered,
+  reserved,
+  received
 }
