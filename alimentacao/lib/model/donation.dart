@@ -14,6 +14,10 @@ class Donation {
     return _registereDonations;
   }
 
+  static List<Donation> select(bool Function(Donation point) where) {
+    return Donation.getAll().where((element) => where(element)).toList();
+  }
+
   late final int id;
   final Map<int, dynamic> donationItems;
   final int donatorID;

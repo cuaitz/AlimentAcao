@@ -27,6 +27,10 @@ class PickUpPoint extends GeoPoint {
     return output;
   }
 
+  static List<PickUpPoint> select(bool Function(PickUpPoint point) where) {
+    return PickUpPoint.getAll().where((element) => where(element)).toList();
+  }
+
   late final int id;
   String roadName;
   int number;

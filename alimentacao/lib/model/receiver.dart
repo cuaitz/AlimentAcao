@@ -17,6 +17,10 @@ class ReceiverUser extends UserProfile {
     return _registeredReceivers;
   }
 
+  static List<ReceiverUser> select(bool Function(ReceiverUser point) where) {
+    return ReceiverUser.getAll().where((element) => where(element)).toList();
+  }
+
   late final int id;
   final String firstName;
   final String lastName;

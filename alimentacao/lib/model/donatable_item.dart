@@ -17,6 +17,10 @@ class DonatableItem {
     return _registeredReceivers;
   }
 
+  static List<DonatableItem> select(bool Function(DonatableItem point) where) {
+    return DonatableItem.getAll().where((element) => where(element)).toList();
+  }
+
   late final int id;
   final String name;
   final ImageProvider image;

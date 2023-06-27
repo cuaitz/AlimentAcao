@@ -16,6 +16,10 @@ class DonatorUser extends UserProfile {
   static List<DonatorUser> getAll() {
     return _registeredDonators;
   }
+  
+  static List<DonatorUser> select(bool Function(DonatorUser point) where) {
+    return DonatorUser.getAll().where((element) => where(element)).toList();
+  }
 
   late final int id;
   final String businessName;
