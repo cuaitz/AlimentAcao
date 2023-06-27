@@ -1,11 +1,23 @@
+import 'package:alimentacao/model/donator.dart';
+import 'package:alimentacao/model/receiver.dart';
 import 'package:flutter/material.dart';
 import '../components.dart';
 import '../routes.dart';
 
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  
+  final TextEditingController _loginController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,14 +37,63 @@ class LoginScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: 200,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      Components.uiTextField("Email", Components.colorGreen),
-                      Components.uiTextField("Senha", Components.colorGreen, obscureText: true),
-                      Components.uiButton("Entrar", Components.colorGreen, () { Navigator.pushNamed(context, Routes.donatorHomePage); }),
-                    ],
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(2.5),
+                          child: Components.uiTextField("Email", Components.colorGreen, controller: _loginController),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(2.5),
+                          child: Components.uiTextField("Senha", Components.colorGreen, obscureText: true, controller: _passwordController),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 2.5),
+                          child: Components.uiButton(
+                            "Entrar", 
+                            Components.colorGreen, 
+                            () {
+                              if (_formKey.currentState!.validate()){
+                                List<DonatorUser> donators = DonatorUser.select((user) {
+                                  return user.email == _loginController.text && user.password== _passwordController.text;
+                                });
+
+                                List<ReceiverUser> receivers = ReceiverUser.select((user) {
+                                  return user.email == _loginController.text && user.password== _passwordController.text;
+                                });
+
+                                if (donators.isNotEmpty) {
+                                  Navigator.pushNamed(context, Routes.donatorHomePage);
+                                } else if (receivers.isNotEmpty) {
+                                  Navigator.pushNamed(context, Routes.receiverHomePage); 
+                                } else {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) {
+                                      return AlertDialog(
+                                        title: const Text('Aviso'),
+                                        content: const Text('Usuário ou senha incorretos.'),
+                                        actions: [
+                                          TextButton(
+                                            child: const Text('Fechar'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                }
+                              }
+                            }
+                          ),
+                        ),
+                      ],
+                    ),
                   )
                 ),
                 Padding(
@@ -57,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: uiLoginButton("Entrar com o Google", const AssetImage('assets/img/icon/google.png'), () { Navigator.pushNamed(context, Routes.receiverHomePage); }),
+                  child: uiLoginButton("Entrar com o Google", const AssetImage('assets/img/icon/google.png'), () { }),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
