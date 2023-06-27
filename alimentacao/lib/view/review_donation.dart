@@ -1,4 +1,6 @@
 import 'package:alimentacao/model/donatable_item.dart';
+import 'package:alimentacao/model/pickup_point.dart';
+import 'package:alimentacao/view/map_page.dart';
 import 'package:flutter/material.dart';
 import '../components.dart';
 import '../routes.dart';
@@ -13,11 +15,13 @@ class ReviewDonationScreen extends StatefulWidget {
 }
 
 class _ReviewDonationScreenState extends State<ReviewDonationScreen> {
+  String buttonText = 'Selecionar';
+
   @override
   Widget build(BuildContext context) {
     final List<int> itemsID = widget.donationItems.keys.toList();
-    final List<dynamic> itemsData = widget.donationItems.values.toList(); 
-    
+    final List<dynamic> itemsData = widget.donationItems.values.toList();
+
     return Scaffold(
       appBar: Components.appBar("Doação", backgroundColor: Components.colorLightPurple),
       bottomNavigationBar: Container(
@@ -31,7 +35,19 @@ class _ReviewDonationScreenState extends State<ReviewDonationScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Components.quickText("Ponto de coleta:", fontSize: 24, fontWeight: FontWeight.w700, color: Colors.white, textAlign: TextAlign.left),
-                Components.uiButton("Selecionar", Colors.white, () { Navigator.pushNamed(context, Routes.donationMapPage);}, textColor: Components.colorPurple),
+                Components.uiButton(buttonText, Colors.white, () async {
+
+                  int? pointID = await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const  PickUpLocationScreen())
+                  );
+                  setState(() {
+                    if (pointID != null) {
+                      PickUpPoint point = PickUpPoint.get(pointID);
+                        buttonText = "${point.roadName}, ${point.number}";
+                    }
+                  });
+                }, textColor: Components.colorPurple),
                 Components.uiButton("Finalizar", Colors.white, () {}, textColor: Components.colorPurple),
               ],
             )

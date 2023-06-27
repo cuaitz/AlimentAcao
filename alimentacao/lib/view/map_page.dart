@@ -59,13 +59,6 @@ class _PickUpLocationScreenState extends State<PickUpLocationScreen> {
                   minZoomLevel: 2,
                   maxZoomLevel: 19,
                   stepZoom: 2,
-                  roadConfiguration: RoadOption(
-                    roadColor: Components.colorLightPurple,
-                    roadBorderColor: Components.colorPurple,
-                    roadBorderWidth: 4,
-                    roadWidth: 12,
-                    zoomInto: true
-                  ),
                   //androidHotReloadSupport: true,
                   onGeoPointClicked: (point) {
                     PickUpPoint? pickUpPoint = PickUpPoint.getByLatLng(point.latitude, point.longitude);
@@ -100,8 +93,8 @@ class _PickUpLocationScreenState extends State<PickUpLocationScreen> {
                                     "Selecionar", 
                                     Components.colorPurple, 
                                     () {
-                                      //widget.retrieveData(dropdownValue!, int.parse(_textFieldController.text));
                                       Navigator.pop(context);
+                                      Navigator.pop(context, pickUpPoint.id);
                                     }
                                   )
                                 ],
