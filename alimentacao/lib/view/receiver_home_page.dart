@@ -14,7 +14,9 @@ class ReceiverHomePageScreen extends StatefulWidget {
 }
 
 class _ReceiverHomePageScreenState extends State<ReceiverHomePageScreen> {
-  List<Donation> donations = Donation.getAll();
+  List<Donation> donations = Donation.select((point) {
+    return point.status == DonationStatus.received || point.status == DonationStatus.reserved;
+  });
 
 
   @override

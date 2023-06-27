@@ -14,7 +14,9 @@ class DonatorHomePageScreen extends StatefulWidget {
 }
 
 class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
-  List<Donation> donations = Donation.getAll();
+  List<Donation> donations = Donation.select((point) {
+    return point.status == DonationStatus.pending || point.status == DonationStatus.delivered;
+  });
 
 
   @override
