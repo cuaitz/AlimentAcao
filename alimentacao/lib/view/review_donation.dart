@@ -1,4 +1,5 @@
 import 'package:alimentacao/model/donatable_item.dart';
+import 'package:alimentacao/model/donation.dart';
 import 'package:alimentacao/model/pickup_point.dart';
 import 'package:alimentacao/view/map_page.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class ReviewDonationScreen extends StatefulWidget {
 
 class _ReviewDonationScreenState extends State<ReviewDonationScreen> {
   String buttonText = 'Selecionar';
+  int? pickUpPointID;
 
   @override
   Widget build(BuildContext context) {
@@ -37,18 +39,23 @@ class _ReviewDonationScreenState extends State<ReviewDonationScreen> {
                 Components.quickText("Ponto de coleta:", fontSize: 24, fontWeight: FontWeight.w700, color: Colors.white, textAlign: TextAlign.left),
                 Components.uiButton(buttonText, Colors.white, () async {
 
-                  int? pointID = await Navigator.push(
+                  pickUpPointID = await Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => const  PickUpLocationScreen())
                   );
                   setState(() {
-                    if (pointID != null) {
-                      PickUpPoint point = PickUpPoint.get(pointID);
+                    if (pickUpPointID != null) {
+                      PickUpPoint point = PickUpPoint.get(pickUpPointID!);
                         buttonText = "${point.roadName}, ${point.number}";
                     }
                   });
                 }, textColor: Components.colorPurple),
-                Components.uiButton("Finalizar", Colors.white, () {}, textColor: Components.colorPurple),
+
+                Components.uiButton("Finalizar", Colors.white, () {
+                  if (pickUpPointID != null) {
+                    Donation(widget.donationItems, 0, pickUpPointID!);
+                  }
+                }, textColor: Components.colorPurple),
               ],
             )
           ),
