@@ -2,8 +2,6 @@ import 'package:alimentacao/model/donation.dart';
 import 'package:alimentacao/model/pickup_point.dart';
 import 'package:flutter/material.dart';
 import '../components.dart';
-import '../routes.dart';
-
 
 
 class AvailableDonationsScreen extends StatefulWidget {
@@ -13,9 +11,13 @@ class AvailableDonationsScreen extends StatefulWidget {
   State<AvailableDonationsScreen> createState() => _AvailableDonationsScreen();
 }
 
-class _AvailableDonationsScreen extends State<AvailableDonationsScreen> {
-  List<PickUpPoint> pickUpPoints = PickUpPoint.getAll();
 
+class _AvailableDonationsScreen extends State<AvailableDonationsScreen> {
+  List<PickUpPoint> pickUpPoints = PickUpPoint.select((pickUpPoint) {
+    return Donation.select((donation) {
+      return donation.pickUpPointID == pickUpPoint.id;
+    }).toList().isNotEmpty;
+  });
 
   @override
   Widget build(BuildContext context) {
