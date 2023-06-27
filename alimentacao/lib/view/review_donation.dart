@@ -55,6 +55,24 @@ class _ReviewDonationScreenState extends State<ReviewDonationScreen> {
                   if (pickUpPointID != null) {
                     Donation(widget.donationItems, 0, pickUpPointID!);
                     Navigator.popUntil(context, ModalRoute.withName(Routes.donatorHomePage));
+                  } else {
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: const Text('Aviso'),
+                          content: const Text('Escolha um ponto de coleta.'),
+                          actions: [
+                            TextButton(
+                              child: const Text('Fechar'),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                 }, textColor: Components.colorPurple),
               ],
