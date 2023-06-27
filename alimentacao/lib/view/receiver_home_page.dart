@@ -6,23 +6,23 @@ import '../routes.dart';
 
 
 
-class DonatorHomePageScreen extends StatefulWidget {
-  const DonatorHomePageScreen({super.key});
+class ReceiverHomePageScreen extends StatefulWidget {
+  const ReceiverHomePageScreen({super.key});
 
   @override
-  State<DonatorHomePageScreen> createState() => _DonatorHomePageScreenState();
+  State<ReceiverHomePageScreen> createState() => _ReceiverHomePageScreenState();
 }
 
-class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
+class _ReceiverHomePageScreenState extends State<ReceiverHomePageScreen> {
   List<Donation> donations = Donation.getAll();
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Components.appBar("Alimenta Ação", backgroundColor: Components.colorPurple),
+      appBar: Components.appBar("Alimenta Ação", backgroundColor: Components.colorGreen),
       bottomNavigationBar: Container(
-        color: Components.colorPurple,
+        color: Components.colorGreen,
         height: 100,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -32,7 +32,7 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Components.uiButton(
-                  "Quero doar",
+                  "Reservar doação",
                   Colors.white,
                   () async {
                     await Navigator.pushNamed(context, Routes.donationPage);
@@ -40,7 +40,7 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
                       donations = Donation.getAll();
                     });
                   },
-                  textColor: Components.colorPurple
+                  textColor: Components.colorGreen
                 ),
               ],
             )
@@ -57,7 +57,7 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
               padding: const EdgeInsets.only(bottom: 15),
               child: Components.quickText(
                 "Doações",
-                color: Components.colorPurple,
+                color: Components.colorGreen,
                 fontSize: 32,
                 fontWeight: FontWeight.w700,
                 textAlign: TextAlign.center
@@ -92,7 +92,7 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
         }
       );
     } else {
-      return Center(child: Components.quickText("Não há nada para ver aqui...", color: Components.colorPurple, fontSize: 24, fontWeight: FontWeight.w700, textAlign: TextAlign.center));
+      return Center(child: Components.quickText("Não há nada para ver aqui...", color: Components.colorGreen, fontSize: 24, fontWeight: FontWeight.w700, textAlign: TextAlign.center));
     }
   }
 
@@ -104,7 +104,7 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: Components.colorPurple
+          color: Components.colorGreen
         ),
         child: Padding(
           padding: const EdgeInsets.all(10),

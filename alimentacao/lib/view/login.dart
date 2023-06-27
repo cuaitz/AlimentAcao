@@ -57,7 +57,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
-                  child: uiLoginButton("Entrar com o Google", const AssetImage('assets/img/icon/google.png'), () { }),
+                  child: uiLoginButton("Entrar com o Google", const AssetImage('assets/img/icon/google.png'), () { Navigator.pushNamed(context, Routes.receiverHomePage); }),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5),
