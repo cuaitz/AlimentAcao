@@ -124,17 +124,24 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
 
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Components.colorPurple
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: cardData,
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            donation.status = donation.status == DonationStatus.delivered ? DonationStatus.pending : DonationStatus.delivered;
+          });
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: Components.colorPurple
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: cardData,
+            ),
           ),
         ),
       ),

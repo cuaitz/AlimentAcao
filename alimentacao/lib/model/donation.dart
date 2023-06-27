@@ -19,7 +19,7 @@ class Donation {
   }
 
   late final int id;
-  late final DonationStatus status;
+  late DonationStatus status;
   final Map<int, dynamic> donationItems;
   final int donatorID;
   final int pickUpPointID;
