@@ -54,7 +54,7 @@ class HomePageScreen extends StatelessWidget {
                       child: Components.p("Nossas ações tratam em conjunto o problema da fome e da exclusão social. A distribuição dos alimentos satisfaz a necessidade básica, enquanto as ações educativas promovem um maior aproveitamento dos nutrientes fornecidos, possibilitando uma alimentação mais saborosa e balanceada. A melhoria na saúde favorece o desenvolvimento psicomotor das pessoas assistidas, criando condições para sua inserção na sociedade e no setor produtivo. O ciclo da fome é interrompido, o ciclo da inclusão social é favorecido.", textAlign: TextAlign.right),
                     ),
                     SizedBox(
-                      height: 180,
+                      height: 270,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
@@ -70,6 +70,13 @@ class HomePageScreen extends StatelessWidget {
                             Components.colorGreen,
                             () {
                               Navigator.pushNamed(context, Routes.receiverRegisterPage);
+                            }
+                          ),
+                          Components.uiButton(
+                            "Login",
+                            Components.colorGreen,
+                            () {
+                              Navigator.pushNamed(context, Routes.loginPage);
                             }
                           ),
                         ],
