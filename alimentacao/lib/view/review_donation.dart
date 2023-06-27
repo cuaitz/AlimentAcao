@@ -54,6 +54,7 @@ class _ReviewDonationScreenState extends State<ReviewDonationScreen> {
                 Components.uiButton("Finalizar", Colors.white, () {
                   if (pickUpPointID != null) {
                     Donation(widget.donationItems, 0, pickUpPointID!);
+                    Navigator.popUntil(context, ModalRoute.withName(Routes.donatorHomePage));
                   }
                 }, textColor: Components.colorPurple),
               ],

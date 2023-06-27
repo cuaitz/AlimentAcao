@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
                     children: [
                       Components.uiTextField("Email", Components.colorGreen),
                       Components.uiTextField("Senha", Components.colorGreen, obscureText: true),
-                      Components.uiButton("Entrar", Components.colorGreen, () { Navigator.pushNamed(context, Routes.donationPage); }),
+                      Components.uiButton("Entrar", Components.colorGreen, () { Navigator.pushNamed(context, Routes.donatorHomePage); }),
                     ],
                   )
                 ),
