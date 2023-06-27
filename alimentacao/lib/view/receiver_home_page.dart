@@ -35,7 +35,7 @@ class _ReceiverHomePageScreenState extends State<ReceiverHomePageScreen> {
                   "Reservar doação",
                   Colors.white,
                   () async {
-                    await Navigator.pushNamed(context, Routes.donationPage);
+                    await Navigator.pushNamed(context, Routes.availableDonations);
                     setState(() {
                       donations = Donation.getAll();
                     });

@@ -118,8 +118,12 @@ class Components {
     );
   }
 
-  static TextField uiTextField(String labelText, Color themeColor, {TextEditingController? controller, Color? backgroundColor, String? hintText, bool obscureText = false}) {
-    return TextField(
+  static TextFormField uiTextField(String labelText, Color themeColor, {String? Function(String?)? validator, TextEditingController? controller, Color? backgroundColor, String? hintText, bool obscureText = false}) {
+    return TextFormField(
+      validator: validator ?? (value) {
+        if (value!.isEmpty) { return 'Preencha este campo'; }
+        return null;
+      },
       controller: controller,
       obscureText: obscureText,
       decoration: InputDecoration(

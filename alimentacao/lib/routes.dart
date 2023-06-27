@@ -1,3 +1,4 @@
+import 'package:alimentacao/view/available_donations.dart';
 import 'package:alimentacao/view/donation_page.dart';
 import 'package:alimentacao/view/donator_home_page.dart';
 import 'package:alimentacao/view/donator_register.dart';
@@ -16,6 +17,8 @@ class Routes {
   static const String donatorHomePage = '/donate/home';
   static const String receiverHomePage = '/receiver/home';
 
+  static const String availableDonations = '/receiver/avaiable';
+
   static const String donationPage = '/donate';
   static const String donationMapPage = '/donate/map';
 
@@ -26,7 +29,9 @@ class Routes {
 
     donatorHomePage: (context) => const DonatorHomePageScreen(),
     receiverHomePage: (context) => const ReceiverHomePageScreen(),
-    
+
+    availableDonations: (context) => const AvailableDonationsScreen(),
+
     donationPage: (context) => DonationScreen(),
     donationMapPage: (context) => const PickUpLocationScreen()
   };

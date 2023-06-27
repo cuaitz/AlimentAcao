@@ -24,7 +24,7 @@ class ReceiverUser extends UserProfile {
   late final int id;
   final String firstName;
   final String lastName;
-  final DateTime birthDate;
+  final String birthDate;
   final String cpf;
   final String rg;
 

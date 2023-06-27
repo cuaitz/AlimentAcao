@@ -99,6 +99,27 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
   Widget donationCard(Donation donation) {
     PickUpPoint pickUpPoint = PickUpPoint.get(donation.pickUpPointID);
 
+    late List<Widget> cardData;
+    if (donation.status == DonationStatus.pending) {
+      cardData = [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Components.quickText("Pendente", color: Colors.white, fontSize: 24, fontWeight: FontWeight.w700),
+        ),
+        Components.quickText("Entregar doação em:", color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
+        Components.quickText("${pickUpPoint.roadName}, ${pickUpPoint.number}", color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500)
+      ];
+    } else {
+      cardData = [
+        Padding(
+          padding: const EdgeInsets.only(bottom: 10),
+          child: Components.quickText("Entregue", color: Colors.white, fontSize: 24, fontWeight: FontWeight.w700),
+        ),
+        Components.quickText("Doação entregue em:", color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
+        Components.quickText("${pickUpPoint.roadName}, ${pickUpPoint.number}", color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500)
+      ];
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5),
       child: Container(
@@ -111,14 +132,7 @@ class _DonatorHomePageScreenState extends State<DonatorHomePageScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
-                child: Components.quickText("Pendente", color: Colors.white, fontSize: 24, fontWeight: FontWeight.w700),
-              ),
-              Components.quickText("Entregar doação em:", color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
-              Components.quickText("${pickUpPoint.roadName}, ${pickUpPoint.number}", color: Colors.white, fontSize: 18, fontWeight: FontWeight.w500)
-            ],
+            children: cardData,
           ),
         ),
       ),
